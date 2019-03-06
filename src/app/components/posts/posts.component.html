@@ -1,5 +1,5 @@
 <mat-tab-group>
-
+  <!-- View all posts if singlePost is false -->
   <ng-template [ngIf]="!singlePost" [ngIfElse]="readPost">
     <mat-tab label="Posts">
       <div class="loading" *ngIf="!posts">
@@ -19,7 +19,7 @@
       </mat-card>
     </mat-tab>
   </ng-template>
-
+  <!-- View a single post is singlePost is true-->
   <ng-template #readPost>
     <mat-tab label="Posts">
       <div class="loading" *ngIf="!post">
@@ -33,9 +33,6 @@
         <mat-card-content>
           <p>{{ post.body }}</p>
         </mat-card-content>
-        <!--<mat-card-actions>-->
-          <!--<button mat-button color="primary" (click)="GoToPost(post.id)">READ</button>-->
-        <!--</mat-card-actions>-->
       </mat-card>
     </mat-tab>
     <mat-tab label="Comments ({{ post.comments.length }})" *ngIf="post">
