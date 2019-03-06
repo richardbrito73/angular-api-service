@@ -1,0 +1,53 @@
+<mat-tab-group>
+
+  <ng-template [ngIf]="!singlePost" [ngIfElse]="readPost">
+    <mat-tab label="Posts">
+      <div class="loading" *ngIf="!posts">
+        <h5>Loading...</h5>
+      </div>
+      <mat-card *ngFor="let post of posts" style="margin-top: 20px;">
+        <mat-card-header>
+          <mat-card-title>{{ post.title | uppercase }}</mat-card-title>
+          <mat-card-subtitle>Lorem ipsum dolor sit amet</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ post.body }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="GoToPost(post.id)">READ</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+  </ng-template>
+
+  <ng-template #readPost>
+    <mat-tab label="Posts">
+      <div class="loading" *ngIf="!post">
+        <h5>Loading...</h5>
+      </div>
+      <mat-card style="margin-top: 20px;" *ngIf="post">
+        <mat-card-header>
+          <mat-card-title>{{ post.title | uppercase }}</mat-card-title>
+          <mat-card-subtitle>Lorem ipsum dolor sit amet</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ post.body }}</p>
+        </mat-card-content>
+        <!--<mat-card-actions>-->
+          <!--<button mat-button color="primary" (click)="GoToPost(post.id)">READ</button>-->
+        <!--</mat-card-actions>-->
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Comments ({{ post.comments.length }})" *ngIf="post">
+      <mat-card *ngFor="let comment of post.comments" style="margin-top: 20px;">
+        <mat-card-header>
+          <mat-card-title>{{ comment.name | uppercase }}</mat-card-title>
+          <mat-card-subtitle>{{ comment.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ post.body }}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </ng-template>
+</mat-tab-group>
