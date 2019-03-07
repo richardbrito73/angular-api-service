@@ -3,13 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
+/**
+ * Service to call the Posts API
+ */
 @Injectable()
 export class PostsService {
 
   public url: string;
 
   constructor(public _http: HttpClient) {
-    // Main API url
+    // Initialize the main API url
     this.url = 'https://jsonplaceholder.typicode.com';
   }
   /**
